@@ -4,7 +4,8 @@
   "description": "Sistema de compraventa ADSI 2062416",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "star": "node app",
+    "dev": "nodemon app"
   },
   "type": "module",
   "author": "\"BRAYAN ESTEBAN MARIN CALDERON\"",
