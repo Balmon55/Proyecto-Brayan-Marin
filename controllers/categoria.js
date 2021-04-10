@@ -10,7 +10,7 @@ const categoria = {
           ] 
           
         })
-        .sort({ createdAt: -1 });
+        .sort({ createdAt: -1});
     res.json({
       categoria,
     });
