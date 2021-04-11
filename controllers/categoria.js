@@ -1,4 +1,3 @@
-import { runInNewContext } from "vm";
 import Categoria from "../models/categoria.js";
 const categoria = {
   CategoriaGet: async (req, res) => {
@@ -11,7 +10,7 @@ const categoria = {
           ] 
           
         })
-        .sort({ createdAt: -1});
+        .sort({ CreatedAt: -1});
     res.json({
       categoria,
     });
@@ -47,7 +46,7 @@ const categoria = {
     })
   },
 
-  CategoriActivar: async(req,res)=>{
+  CategoriaActivar: async(req,res)=>{
     const {id}=req.params;
     const categoria=await Categoria.findByIdAndUpdate(id,{Condition:1})
     res.json({

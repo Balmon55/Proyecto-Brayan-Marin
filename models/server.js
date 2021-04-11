@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors"
 import dbConexion from "../database/config.js"
 import categoria from "../routes/categoria.js"
+import usuario from "../routes/usuario.js"
 
 class Server {
   constructor() {
@@ -23,6 +24,7 @@ class Server {
   // aqui vamos a colocar las rutas
   routes() {
     this.app.use('/api/categoria',categoria);
+    this.app.use('/api/usuario',usuario); 
   }
 // Conexión a la base de datos
   async dbConexion(){
