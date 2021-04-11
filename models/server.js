@@ -22,7 +22,7 @@ class Server {
  
   // aqui vamos a colocar las rutas
   routes() {
-    this.app.use('/api/categoria', categoria );
+    this.app.use('/api/categoria',categoria);
   }
 // Conexión a la base de datos
   async dbConexion(){
