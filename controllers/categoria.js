@@ -37,7 +37,7 @@ const categoria = {
 
   CategoriaPut: async (req,res)=>{
     const {id}= req.params;
-    const {_id,CreatedAt,__V,Condition,...rest}=req.body;
+    const {_id,CreatedAt,__V,State,...rest}=req.body;
     
     const categoria=await Categoria.findByIdAndUpdate(id,rest)
     
@@ -48,14 +48,14 @@ const categoria = {
 
   CategoriaActivar: async(req,res)=>{
     const {id}=req.params;
-    const categoria=await Categoria.findByIdAndUpdate(id,{Condition:1})
+    const categoria=await Categoria.findByIdAndUpdate(id,{State:1})
     res.json({
       categoria
     })
   },
   CategoriaDesactivar:async (req,res)=>{
     const {id}=req.params;
-    const categoria=await Categoria.findByIdAndUpdate(id,{Condition:0})
+    const categoria=await Categoria.findByIdAndUpdate(id,{State:0})
     res.json({
       categoria
     })

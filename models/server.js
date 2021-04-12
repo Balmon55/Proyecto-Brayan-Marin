@@ -3,6 +3,10 @@ import cors from "cors"
 import dbConexion from "../database/config.js"
 import categoria from "../routes/categoria.js"
 import usuario from "../routes/usuario.js"
+import articulo from "../routes/articulo.js"
+import compra from "../routes/compra.js"
+import persona from "../routes/persona.js"
+import venta from "../routes/venta.js"
 
 class Server {
   constructor() {
@@ -25,6 +29,10 @@ class Server {
   routes() {
     this.app.use('/api/categoria',categoria);
     this.app.use('/api/usuario',usuario); 
+    this.app.use('/api/articulo',articulo); 
+    this.app.use('/api/compra',compra); 
+    this.app.use('/api/persona',persona); 
+    this.app.use('/api/venta',venta); 
   }
 // Conexión a la base de datos
   async dbConexion(){

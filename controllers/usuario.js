@@ -45,7 +45,7 @@ import bcryptjs from 'bcryptjs'
     },
     UsuarioPut: async (req,res)=>{
         const {id}=req.params;
-        const {_id,CreatedAt,__V,Condition,Role,Email,Password,...rest}=req.body;
+        const {_id,CreatedAt,__V,State,Role,Email,Password,...rest}=req.body;
         if (Password){
         const  salt=bcryptjs.genSaltSync();
         rest.Password = bcryptjs.hashSync(Password,salt)
@@ -59,14 +59,14 @@ import bcryptjs from 'bcryptjs'
 
     UsuarioActivar:async(req,res)=>{
         const {id}=req.params;
-    const usuario=await Usuario.findByIdAndUpdate(id,{Condition:1})
+    const usuario=await Usuario.findByIdAndUpdate(id,{State:1})
     res.json({
       usuario
     })
     },
     UsuarioDesactivar:async(req,res)=>{
         const {id}=req.params;
-    const usuario=await Usuario.findByIdAndUpdate(id,{Condition:0})
+    const usuario=await Usuario.findByIdAndUpdate(id,{State:0})
     res.json({
       usuario
     })
