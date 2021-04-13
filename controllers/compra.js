@@ -13,9 +13,9 @@ const controllerCompra={
               { NumCheck: new RegExp(value, "i") },
             ],
           })
-          .sort({ createdAt: -1 })
+          .sort({ CreatedAt: -1 })
           .populate("User", ["Name", "Email"])
-          .populate("Person ", ["Name", "idDocument"]);
+          .populate("Person ", ["Name", "IdDocument"]);
     
         res.json({
           compra,
@@ -25,9 +25,9 @@ const controllerCompra={
     CompraById: async (req, res) => {
         const { id } = req.params;
         const compra = await Compra
-          .findOne({ _id: id })
+          .findOne({  id })
           .populate("User", ["Name", "Email"])
-          .populate("Person ", ["Name", "idDocument"]);
+          .populate("Person ", ["Name", "IdDocument"]);
     
         res.json({
          compra,
@@ -35,14 +35,14 @@ const controllerCompra={
     },
 
     CompraPost: async (req, res) => {
-        const {User,Person,TypeCheck,SerieCheck,NumProof,Total,Tax,Details} = req.body;
-        const compra = new Compra({User,Person,TypeCheck,SerieCheck,NumProof,Total,Tax,Details});
+        const {User,Person,TypeCheck,SerieCheck,NumCheck,Total,Tax,Details} = req.body;
+        const compra = new Compra({User,Person,TypeCheck,SerieCheck,NumCheck,Total,Tax,Details});
     //TOTAL
         compra.Total = compra.Details.reduce((acc, Article) => acc + (Article.Quantity * Article.Price), 0)
     //TAX
         compra.Tax = compra.Total * 0.19
         await compra.save();
-        Details.map((article) => modificarStock.disminuirStock(Article._id,Article.Quantity))
+        Details.map((Article) => modificarStock.disminuirStock(Article._id,Article.Quantity))
         res.json({
           compra,
         });

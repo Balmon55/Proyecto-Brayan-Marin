@@ -26,7 +26,7 @@ PersonaById:async(req,res)=>{
 PersonaPost:async(req,res)=>{
     const {TypePerson,Name,Document,IdDocument,Address,Phone,Email,} = req.body;
       const persona = new Persona({TypePerson,Name,Document,IdDocument,Address,Phone,Email,});
-      await person.save();
+      await persona.save();
       res.json({
         persona,})
   

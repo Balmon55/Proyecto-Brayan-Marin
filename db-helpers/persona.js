@@ -14,7 +14,7 @@ const persona={
     if (exist) throw new Error(`Ya existe una persona con este mismo numero de telefono`);
   },
    existePersonabyEmail: async (Email) => {
-    const exist = await Personal.findOne({ Email });
+    const exist = await Persona.findOne({ Email });
     if (exist) throw new Error(`Ya existe una persona con esta misma dirección de correo`);
   },
 }

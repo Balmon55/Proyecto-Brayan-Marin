@@ -1,11 +1,12 @@
 import Usuario from "../models/usuario.js";
 import bcryptjs from 'bcryptjs'  
+import { generarJWT } from "../middlewares/validar.jwt.js";
 
  const controllersUsuario={
 
     UsuarioGet: async (req, res)=>{
         const {value}=req.query;
-    const usuarios = await Usuario
+    const usuario = await Usuario
         .find({
           $or:[
               {Name: new RegExp(value,'i')},
@@ -16,7 +17,7 @@ import bcryptjs from 'bcryptjs'
         })
         .sort({ CreatedAt: -1});
         res.json({
-           usuarios,
+           usuario,
         });
 
     },
@@ -42,6 +43,37 @@ import bcryptjs from 'bcryptjs'
         res.json({
             usuario
         });
+    },
+    Login:async(req,res)=>{
+        const {Email,Password}=req.body;
+        const usuario =await Usuario.findOne({Email});
+
+        if(! usuario){
+            return res.json({
+                msg:'Usuario/Password no son correctos usu '
+            })
+            
+        }
+        if(! usuario.State===0){
+            return res.json({
+                msg:'Usuario/Password no son correctos estado '
+            })
+            
+        }
+        const ValidarPassword=bcryptjs.compareSync(Password,usuario.Password)
+        if(! ValidarPassword){
+            return res.json({
+                msg:'Usuario/Password no son correctos contra'
+            });
+
+             
+        }
+        const token= await generarJWT(usuario._id)
+        return res.json({
+            usuario,
+            token
+        })
+        
     },
     UsuarioPut: async (req,res)=>{
         const {id}=req.params;
